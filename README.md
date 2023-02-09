@@ -9,6 +9,8 @@ Sample charts meant to support analysis, Poland-Saudi Arabia match used as an ex
 
 ![](https://github.com/AKapich/WorldCup_App/blob/main/images/cash_convexHull.png)
 
+![](https://github.com/AKapich/WorldCup_App/blob/main/images/convexHull.png)
+
 ![](https://github.com/AKapich/WorldCup_App/blob/main/images/xG_flow.png)
 
 ![](https://github.com/AKapich/WorldCup_App/blob/main/images/shotmap.png)

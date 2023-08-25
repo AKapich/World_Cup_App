@@ -3,7 +3,7 @@ from auxiliary import match_dict, matches
 from change_charts import create_plot
 import os
 
-os.chdir('C:/Users/Aleks/OneDrive/Dokumenty/GitHub/WorldCup_App/app')
+#os.chdir('C:/Users/Aleks/OneDrive/Dokumenty/GitHub/WorldCup_App/app')
 
 st.set_page_config(
         page_title="World Cup 2022 Analytical Tool",
@@ -53,8 +53,3 @@ with col2:
     st.sidebar.write("[Twitter](https://twitter.com/AKapich)")
     st.sidebar.write("[GitHub](https://github.com/AKapich)")
     st.sidebar.write("[Buy Me a Coffee](https://www.buymeacoffee.com/akapich)")
-
-# Run the cmd command
-# import subprocess
-# subprocess.run('streamlit run c:/Users/Aleks/OneDrive/Dokumenty/GitHub/WorldCup_App/app/app.py',
-#  shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)

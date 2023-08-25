@@ -1,1 +1,2 @@
 statsbombpy==1.6.1
+mplsoccer==1.1.9

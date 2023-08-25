@@ -91,5 +91,8 @@ annotation_fix_dict = {
     'Cascante': 'Rodri',
     'Burgos': 'Busquets',
     'Gavira': 'Gavi',
-    'Tanco': 'Azpilicueta'
+    'Tanco': 'Azpilicueta',
+    'II': 'Hongla',
+    'Ndoubena': "N'Koulou",
+    'Mboka': 'Epassy'
 }

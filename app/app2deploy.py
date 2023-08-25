@@ -8,7 +8,7 @@ import os
 st.set_page_config(
         page_title="World Cup 2022 Analytical Tool",
         #page_icon="⚽",
-        page_icon='./qatar_icon.ico',
+        page_icon='https://github.com/AKapich/WorldCup_App/blob/main/app/qatar_icon.ico',
     )
 
 
@@ -17,7 +17,7 @@ st.markdown("*Platform providing a handful of visualizations for every match of 
 st.markdown("---")
 
 # World Cup Image
-st.sidebar.image("./qatar_logo2.png")
+st.sidebar.image("https://github.com/AKapich/WorldCup_App/blob/main/app/qatar_logo2.png")
 
 # dropdown for choosing the match
 st.sidebar.title("Select Match")
@@ -42,7 +42,8 @@ st.markdown('---')
 create_plot(selected_chart, match_id, home_team, away_team, competition_stage)
 
 st.markdown('---')
-st.image('./sb_icon.png', caption='App made by Aleks Kapich. Data powered by StatsBomb', use_column_width=True)
+st.image('https://github.com/AKapich/WorldCup_App/blob/main/app/sb_icon.png',
+          caption='App made by Aleks Kapich. Data powered by StatsBomb', use_column_width=True)
 
 # signature
 st.sidebar.markdown('---')

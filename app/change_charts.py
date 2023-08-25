@@ -137,3 +137,4 @@ fun_dict = {
 def create_plot(selected_chart, match_id, home_team, away_team, competition_stage):
     current_fun = fun_dict[selected_chart]
     current_fun(match_id, home_team, away_team, competition_stage)
+    

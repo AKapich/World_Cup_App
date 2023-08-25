@@ -13,7 +13,7 @@ st.set_page_config(
 
 
 st.title("World Cup 2022 Analytical Tool")
-st.markdown("*Platform providing access to vizualisations for all the matches from Qatar's 2022 World Cup*")
+st.markdown("*Platform providing a handful of visualizations for every match of the last World Cup*")
 st.markdown("---")
 
 # World Cup Image

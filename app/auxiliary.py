@@ -1,4 +1,4 @@
-from statsbombpy  import sb
+from statsbombpy import sb
 import pandas as pd
 import numpy as np
 
@@ -43,6 +43,7 @@ country_colors = {
     "Switzerland": "#FF0000"
 }
 
+
 def get_starting_XI(match_id, team):
     events = sb.events(match_id=match_id)
     events = events[events["team"]==team]
@@ -54,6 +55,7 @@ def get_starting_XI(match_id, team):
     lineup.columns = ['Player', 'Number']
     lineup.index = lineup['Number']
     return lineup['Player']
+
 
 annotation_fix_dict = {
     'Cuccittini': 'Messi',

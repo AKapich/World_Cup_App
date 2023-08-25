@@ -13,7 +13,7 @@ from scipy import stats
 import warnings
 warnings.filterwarnings("ignore")
 
-from auxiliary import country_colors, annotation_fix_dict, xT
+from auxiliary import country_colors, annotation_fix_dict
 
 
 
@@ -555,6 +555,8 @@ def passing_sonars(match_id, team, home_team, away_team, competition_stage):
 
 def expected_threat(match_id, team, home_team, away_team, competition_stage):
         # Import xT Grid 
+        xT = pd.read_csv("./xT_grid.csv", header=None)
+        xT = np.array(xT)
         xT_rows, xT_cols = xT.shape # amount of grids = amount of bins
 
         # creating xT column

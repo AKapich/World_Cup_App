@@ -7,10 +7,12 @@ from auxiliary import matches
 
 def overview(match_id, home_team, away_team, competition_stage):
         match_data = matches[matches['match_id']==match_id].iloc[0]
+        st.write(f"Stage: {match_data['competition_stage']}")
         st.write(f"Stadium: {match_data['stadium']}")
         st.write(f"Referee: {match_data['referee']}")
         st.write(f"Manager of {home_team}: {match_data['home_managers']}")
         st.write(f"Manager of {away_team}: {match_data['away_managers']}")
+        st.markdown('---')
         # Lineups 
         from auxiliary import get_starting_XI
         home_lineup = get_starting_XI(match_id, home_team)

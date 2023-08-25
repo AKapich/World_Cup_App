@@ -449,7 +449,7 @@ def progressive_passes(match_id, player, team, home_team, away_team, competition
         pitch.lines(xstart=df["start_x"], ystart=df["start_y"], xend=df["end_x"], yend=df["end_y"],
                 ax=ax, comet=True, color=country_colors[team])
 
-        ax.set_title(f"{home_team} vs {away_team}, World Cup {competition_stage}\n{player} progressive passes",
+        ax.set_title(f"{home_team} vs {away_team}, World Cup {competition_stage}\n{player}: Progressive Passes",
                 fontsize=18, color="w", fontfamily="Monospace", fontweight='bold', pad=-8)
 
         return fig
@@ -547,7 +547,7 @@ def passing_sonars(match_id, team, home_team, away_team, competition_stage):
                                 size=9, fontweight='bold',
                                 ax=ax)
 
-        ax.set_title(f"{home_team} vs {away_team}, World Cup {competition_stage}\n{team} passing sonars (starting XI)",
+        ax.set_title(f"{home_team} vs {away_team}, World Cup {competition_stage}\n{team}: Passing Sonars (starting XI)",
                 fontsize=18, color="w", fontfamily="Monospace", fontweight='bold', pad=-8)
 
         return fig

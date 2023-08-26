@@ -94,5 +94,6 @@ annotation_fix_dict = {
     'Tanco': 'Azpilicueta',
     'II': 'Hongla',
     'Ndoubena': "N'Koulou",
-    'Mboka': 'Epassy'
+    'Mboka': 'Epassy',
+    'Tunga': 'Batshuayi'
 }

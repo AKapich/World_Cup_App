@@ -1,5 +1,5 @@
-# [2022 WorldCup App](https://worldcup2022-alekskapich.streamlit.app/)
-Python app facilitating profound analysis of every World Cup 2022 football match
+# [2022 World Cup App](https://worldcup2022-alekskapich.streamlit.app/)
+Python app facilitating analysis of every World Cup 2022 football match
 
 Here's how does it look like: 
 

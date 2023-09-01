@@ -26,9 +26,9 @@ def passes_heatmap(matchid, player, home_team, away_team, competition_stage):
     passes_player.index = range(len(passes_player))
 
     fig ,ax = plt.subplots(figsize=(13, 8),constrained_layout=False, tight_layout=True)
-    fig.set_facecolor('#55647d')
-    ax.patch.set_facecolor('#55647d')
-    pitch = Pitch(pitch_type='statsbomb', pitch_color='#55647d', line_color='#c7d5cc')
+    fig.set_facecolor('#0e1117')
+    ax.patch.set_facecolor('#0e1117')
+    pitch = Pitch(pitch_type='statsbomb', pitch_color='#0e1117', line_color='#c7d5cc')
     #Draw the pitch on the ax figure
     pitch.draw(ax=ax)
 
@@ -76,10 +76,10 @@ def shot_map(match_id, home_team, away_team, competition_stage):
         }
 
         fig,ax = plt.subplots(figsize=(6, 9.75),constrained_layout=False, tight_layout=True)
-        fig.set_facecolor('#55647d')
-        ax.patch.set_facecolor('#55647d')
+        fig.set_facecolor('#0e1117')
+        ax.patch.set_facecolor('#0e1117')
         # vertical pitch!
-        pitch = VerticalPitch(pitch_type='statsbomb', pitch_color='#55647d', line_color='#c7d5cc')
+        pitch = VerticalPitch(pitch_type='statsbomb', pitch_color='#0e1117', line_color='#c7d5cc')
         pitch.draw(ax=ax)
 
         shots = sb.events(match_id=match_id, split=True, flatten_attrs=False)["shots"]
@@ -91,14 +91,14 @@ def shot_map(match_id, home_team, away_team, competition_stage):
                 if shots.iloc[i].team==home_team:
                         plt.scatter(shots["start_y"][i], shots["start_x"][i],
                                 color=country_colors[home_team],
-                                edgecolors='black',
+                                edgecolors='white',
                                 marker=outcome_dict[shots["shot"][i]["outcome"]["name"]],
                                 s=120)
                 else:
                         # vertical pitch, therefore y and coords exchanged
                         plt.scatter(80-shots["start_y"][i], 120-shots["start_x"][i],
                                 color=country_colors[away_team],
-                                edgecolors='black',
+                                edgecolors='white',
                                 marker=outcome_dict[shots["shot"][i]["outcome"]["name"]],
                                 s=120)   
 
@@ -161,20 +161,21 @@ def passing_network(match_id, team, home_team, away_team, competition_stage):
         passes_between = passes_between.loc[(passes_between['pass_count']>1)]
 
         fig ,ax = plt.subplots(figsize=(13, 8),constrained_layout=False, tight_layout=True)
-        fig.set_facecolor('#55647d')
-        ax.patch.set_facecolor('#55647d')
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='#55647d', line_color='#c7d5cc')
+        fig.set_facecolor('#0e1117')
+        ax.patch.set_facecolor('#0e1117')
+        pitch = Pitch(pitch_type='statsbomb', pitch_color='#0e1117', line_color='#c7d5cc')
         pitch.draw(ax=ax)
 
         arrows = pitch.arrows(passes_between.x, passes_between.y,
                         passes_between.x_end, passes_between.y_end,
-                        color='black',
+                        #color='#ecd09f',
+                        color='#d4d4d4',
                         alpha=pd.to_numeric(passes_between["pass_count"], downcast="float")/max(passes_between["pass_count"]),
                         ax=ax)
         nodes = pitch.scatter(average_location.x, average_location.y,
                         s = pd.to_numeric(average_location["count"], downcast="float")*25,
                         #alpha = pd.to_numeric(average_location["count"], downcast="float")/max(average_location["count"]),
-                        color=country_colors[team], edgecolors='black',
+                        color=country_colors[team], edgecolors='white',
                         ax=ax)
 
         for index, row in average_location.iterrows():
@@ -242,8 +243,8 @@ def xG_flow(match_id, home_team, away_team, competition_stage):
         mpl.rcParams['ytick.color'] = 'white'
 
         fig, ax = plt.subplots(figsize = (10,5))
-        fig.set_facecolor('#55647d')
-        ax.patch.set_facecolor('#55647d')
+        fig.set_facecolor('#0e1117')
+        ax.patch.set_facecolor('#0e1117')
 
         ax.step(x=a_min, y=a_xG, color=country_colors[away_team], where='post', linewidth=4)
         ax.step(x=h_min, y=h_xG, color=country_colors[home_team], where='post', linewidth=4)
@@ -276,9 +277,9 @@ def single_convex_hull(match_id, player, team, home_team, away_team, competition
 
         # single player
         fig ,ax = plt.subplots(figsize=(13, 8),constrained_layout=False, tight_layout=True)
-        fig.set_facecolor('#55647d')
-        ax.patch.set_facecolor('#55647d')
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='#55647d', line_color='#c7d5cc')
+        fig.set_facecolor('#0e1117')
+        ax.patch.set_facecolor('#0e1117')
+        pitch = Pitch(pitch_type='statsbomb', pitch_color='#0e1117', line_color='#c7d5cc')
         pitch.draw(ax=ax)
 
         events = events[pd.isna(events["location"])==False]
@@ -295,7 +296,7 @@ def single_convex_hull(match_id, player, team, home_team, away_team, competition
         points = player_events[['x','y']].values
 
         plt.scatter(before_filter.x, before_filter.y, color=country_colors[team])
-        plt.scatter(player_events.x, player_events.y, color='yellow')
+        plt.scatter(player_events.x, player_events.y, color='white')
         # create a convex hull
         hull = ConvexHull(player_events[['x','y']])
         for i in hull.simplices:
@@ -320,13 +321,13 @@ def team_convex_hull(match_id, team, home_team, away_team, competition_stage):
 
         # for every starter
         fig ,ax = plt.subplots(figsize=(13, 8),constrained_layout=False, tight_layout=True)
-        fig.set_facecolor('#55647d')
-        ax.patch.set_facecolor('#55647d')
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='#55647d', line_color='#c7d5cc')
+        fig.set_facecolor('#0e1117')
+        ax.patch.set_facecolor('#0e1117')
+        pitch = Pitch(pitch_type='statsbomb', pitch_color='#0e1117', line_color='#c7d5cc')
         pitch.draw(ax=ax)
 
         colours = ['#eb4034', '#ebdb34', '#98eb34', '#34eb77', '#be9cd9', '#5797e6',
-                   '#262729', '#de34eb', '#eb346b', '#34ebcc', '#dbd5d5']
+                   '#fbddad', '#de34eb', '#eb346b', '#34ebcc', '#dbd5d5']
         colourdict = dict(zip(starters, colours))
 
         for player in starters:
@@ -384,16 +385,16 @@ def voronoi(match_id, home_team, away_team, competition_stage):
                         df['y'][i] = 80-df['y'][i]
 
         fig ,ax = plt.subplots(figsize=(13, 8),constrained_layout=False, tight_layout=True)
-        fig.set_facecolor('#55647d')
-        ax.patch.set_facecolor('#55647d')
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='#55647d', line_color='#c7d5cc')
+        fig.set_facecolor('#0e1117')
+        ax.patch.set_facecolor('#0e1117')
+        pitch = Pitch(pitch_type='statsbomb', pitch_color='#0e1117', line_color='#c7d5cc')
         pitch.draw(ax=ax)
 
         pitch.voronoi(df.x, df.y, df.team)
         team1,team2 = pitch.voronoi(df.x, df.y, df.team_id)
 
-        t1 = pitch.polygon(team1, ax=ax, fc=country_colors[home_team], ec='white', lw=3, alpha=0.2)
-        t2 = pitch.polygon(team2, ax=ax, fc=country_colors[away_team], ec='white', lw=3, alpha=0.2)
+        t1 = pitch.polygon(team1, ax=ax, fc=country_colors[home_team], ec='white', lw=3, alpha=0.5)
+        t2 = pitch.polygon(team2, ax=ax, fc=country_colors[away_team], ec='white', lw=3, alpha=0.5)
 
         # Plot players
         for i in range(len(df['x'])):
@@ -440,9 +441,9 @@ def progressive_passes(match_id, player, team, home_team, away_team, competition
         df['progressive'] = df['end'] < 0.75*df['beginning']
 
         fig ,ax = plt.subplots(figsize=(13, 8),constrained_layout=False, tight_layout=True)
-        fig.set_facecolor('#55647d')
-        ax.patch.set_facecolor('#55647d')
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='#55647d', line_color='#c7d5cc')
+        fig.set_facecolor('#0e1117')
+        ax.patch.set_facecolor('#0e1117')
+        pitch = Pitch(pitch_type='statsbomb', pitch_color='#0e1117', line_color='#c7d5cc')
         pitch.draw(ax=ax)
 
         df = df[df['progressive']==True]
@@ -497,9 +498,9 @@ def passing_sonars(match_id, team, home_team, away_team, competition_stage):
 
         #the pitch
         fig ,ax = plt.subplots(figsize=(13, 8),constrained_layout=False, tight_layout=True)
-        fig.set_facecolor('#55647d')
-        ax.patch.set_facecolor('#55647d')
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='#55647d', line_color='#c7d5cc')
+        fig.set_facecolor('#0e1117')
+        ax.patch.set_facecolor('#0e1117')
+        pitch = Pitch(pitch_type='statsbomb', pitch_color='#0e1117', line_color='#c7d5cc')
         pitch.draw(ax=ax)
 
         #drawing sonars
@@ -511,7 +512,8 @@ def passing_sonars(match_id, team, home_team, away_team, competition_stage):
                         theta_left_start = 180
 
                         #Color coding by distance
-                        color = "darkred"
+                        #color = "darkred"
+                        color = '#9f1b1e'
                         if row.amount < 3:
                                 color = "gold"
                         elif row.amount < 5:
@@ -600,9 +602,9 @@ def expected_threat(match_id, team, home_team, away_team, competition_stage):
         df = dfxT.merge(average_location, left_on="player", right_index=True)
 
         fig,ax = plt.subplots(figsize=(4.5, 7.5),constrained_layout=False, tight_layout=True)
-        fig.set_facecolor('#55647d')
-        ax.patch.set_facecolor('#55647d')
-        pitch = VerticalPitch(pitch_type='statsbomb', pitch_color='#55647d', line_color='#c7d5cc')
+        fig.set_facecolor('#0e1117')
+        ax.patch.set_facecolor('#0e1117')
+        pitch = VerticalPitch(pitch_type='statsbomb', pitch_color='#0e1117', line_color='#c7d5cc')
         pitch.draw(ax=ax)
 
         df = df[df.index.isin(startingXI)]
@@ -613,7 +615,7 @@ def expected_threat(match_id, team, home_team, away_team, competition_stage):
                         s = 975,
                         color=cmap(norm(df.xT)),
                         marker='H',
-                        edgecolors='black',
+                        edgecolors='white',
                         ax=ax)
 
         for index, row in df.iterrows():
@@ -650,9 +652,9 @@ def pressure_heatmap(match_id, team, home_team, away_team, competition_stage):
         press_df = pd.DataFrame({'x': press_x, 'y': press_y})
 
         fig ,ax = plt.subplots(figsize=(13, 8),constrained_layout=False, tight_layout=True)
-        fig.set_facecolor('#55647d')
-        ax.patch.set_facecolor('#55647d')
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='#55647d', line_color='white', line_zorder=2)
+        fig.set_facecolor('#0e1117')
+        ax.patch.set_facecolor('#0e1117')
+        pitch = Pitch(pitch_type='statsbomb', pitch_color='#0e1117', line_color='white', line_zorder=2)
         pitch.draw(ax=ax)
 
 
@@ -664,7 +666,7 @@ def pressure_heatmap(match_id, team, home_team, away_team, competition_stage):
                              fontweight='bold', family='monospace')
         
         pitch.annotate(text='The direction of play  ', xytext=(45, 82), xy=(85, 82), ha='center', va='center', ax=ax,
-                        arrowprops=dict(facecolor='#323b49'), fontsize=12, color='white', fontweight="bold", family="monospace")
+                        arrowprops=dict(facecolor='white'), fontsize=12, color='white', fontweight="bold", family="monospace")
 
         plt.title(f'{home_team} vs {away_team}, World Cup 2022 {competition_stage}\n{team}: Pressure Map',
                 color='white', size=20,  fontweight="bold", family="monospace")

@@ -354,7 +354,7 @@ def team_convex_hull(match_id, team, home_team, away_team, competition_stage):
                 except:
                         pass
 
-        ax.set_title(f"{home_team} vs {away_team}, World Cup {competition_stage}\nConvex Hulls of actions",
+        ax.set_title(f"{home_team} vs {away_team}, World Cup {competition_stage}\n{team}: Convex Hulls of actions",
                 fontsize=18, color="w", fontfamily="Monospace", fontweight='bold', pad=-8)
         
         return fig
@@ -636,7 +636,7 @@ def expected_threat(match_id, team, home_team, away_team, competition_stage):
                         size=7.5, fontweight='bold',
                         ax=ax)
                 
-        ax.set_title(f"{home_team} vs {away_team}\nWorld Cup {competition_stage}\n{team} xT (starting XI)",
+        ax.set_title(f"{home_team} vs {away_team}\nWorld Cup {competition_stage}\n{team}: xT (starting XI)",
                 fontsize=13.5, color="w", fontfamily="Monospace", fontweight='bold', pad=-8)
         
         return fig
@@ -666,7 +666,7 @@ def pressure_heatmap(match_id, team, home_team, away_team, competition_stage):
         pitch.annotate(text='The direction of play  ', xytext=(45, 82), xy=(85, 82), ha='center', va='center', ax=ax,
                         arrowprops=dict(facecolor='#323b49'), fontsize=12, color='white', fontweight="bold", family="monospace")
 
-        plt.title(f'{home_team} vs {away_team}, World Cup 2022 {competition_stage}\n{team} Pressures Map',
+        plt.title(f'{home_team} vs {away_team}, World Cup 2022 {competition_stage}\n{team}: Pressure Map',
                 color='white', size=20,  fontweight="bold", family="monospace")
         
         return fig

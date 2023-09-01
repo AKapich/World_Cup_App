@@ -118,7 +118,14 @@ def tet(match_id, home_team, away_team, competition_stage):
        st.subheader('Expected Threat')
        selected_team = st.selectbox('Team', [home_team, away_team])
        st.pyplot(viz.expected_threat(match_id, selected_team, home_team, away_team, competition_stage))
-       
+
+
+def ph(match_id, home_team, away_team, competition_stage):
+       st.subheader('Pressure Heatmap')
+       st.pyplot(viz.pressure_heatmap(match_id, home_team, home_team, away_team, competition_stage))
+       st.subheader('Pressure Heatmap')
+       st.pyplot(viz.pressure_heatmap(match_id, away_team, home_team, away_team, competition_stage))
+
 
 fun_dict = {
         'Overview': overview,
@@ -131,7 +138,8 @@ fun_dict = {
         'Voronoi Diagram': vd,
         'Progressive Passes': pp,
         'Passing Sonars': ps,
-        'Team Expected Threat': tet
+        'Team Expected Threat': tet,
+        'Pressure Heatmap': ph
     }
 
 def create_plot(selected_chart, match_id, home_team, away_team, competition_stage):

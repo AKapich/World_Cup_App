@@ -3,6 +3,7 @@ from statsbombpy import sb
 from mplsoccer.pitch import Pitch, VerticalPitch
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -637,5 +638,35 @@ def expected_threat(match_id, team, home_team, away_team, competition_stage):
                 
         ax.set_title(f"{home_team} vs {away_team}\nWorld Cup {competition_stage}\n{team} xT (starting XI)",
                 fontsize=13.5, color="w", fontfamily="Monospace", fontweight='bold', pad=-8)
+        
+        return fig
+
+
+def pressure_heatmap(match_id, team, home_team, away_team, competition_stage):
+        events = sb.events(match_id=match_id, split=True, flatten_attrs=False)
+        press = events['pressures'].query(f"team=='{team}'")
+        press_x = press['location'].apply(lambda crd: crd[0])
+        press_y = press['location'].apply(lambda crd: crd[1])
+        press_df = pd.DataFrame({'x': press_x, 'y': press_y})
+
+        fig ,ax = plt.subplots(figsize=(13, 8),constrained_layout=False, tight_layout=True)
+        fig.set_facecolor('#55647d')
+        ax.patch.set_facecolor('#55647d')
+        pitch = Pitch(pitch_type='statsbomb', pitch_color='#55647d', line_color='white')
+        pitch.draw(ax=ax)
+
+
+        bin_statistic = pitch.bin_statistic(press_df.x, press_df.y, statistic='count', bins=(8, 6), normalize=False)
+        pitch.heatmap(bin_statistic, edgecolor='#323b49', ax=ax, alpha=0.55,
+                cmap=LinearSegmentedColormap.from_list("custom_cmap", ["#f3f9ff", country_colors[team]], N=100))
+
+        pitch.label_heatmap(bin_statistic, color='#323b49', fontsize=12, ax=ax, ha='center', va='center',
+                             fontweight='bold', family='monospace')
+        
+        pitch.annotate(text='The direction of play  ', xytext=(45, 82), xy=(85, 82), ha='center', va='center', ax=ax,
+                        arrowprops=dict(facecolor='#323b49'), fontsize=12, color='white', fontweight="bold", family="monospace")
+
+        plt.title(f'{home_team} vs {away_team}, World Cup 2022 {competition_stage}\n{team} Pressures Map',
+                color='white', size=20,  fontweight="bold", family="monospace")
         
         return fig

@@ -691,6 +691,9 @@ def team_passes_heatmap(match_id, team, home_team, away_team, competition_stage)
         bin_statistic['statistic'] = gaussian_filter(bin_statistic['statistic'], 0.95)
         pitch.heatmap(bin_statistic, ax=ax, cmap='hot', edgecolors='#2f2f2f', vmin=0, vmax=15)
 
+        pitch.annotate(text='The direction of play  ', xytext=(45, 82), xy=(85, 82), ha='center', va='center', ax=ax,
+                arrowprops=dict(facecolor='white'), fontsize=12, color='white', fontweight="bold", family="monospace")
+
         plt.title(f'{home_team} vs {away_team}, World Cup 2022 {competition_stage}\n{team}: Pass Map',
                 color='white', size=20,  fontweight="bold", family="monospace")
         

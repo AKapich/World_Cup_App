@@ -126,6 +126,12 @@ def ph(match_id, home_team, away_team, competition_stage):
        st.subheader('Pressure Heatmap')
        st.pyplot(viz.pressure_heatmap(match_id, away_team, home_team, away_team, competition_stage))
 
+def tpm(match_id, home_team, away_team, competition_stage):
+       st.subheader('Team Pass Heatmap')
+       st.pyplot(viz.team_passes_heatmap(match_id, home_team, home_team, away_team, competition_stage))
+       st.subheader('Team Pass Heatmap')
+       st.pyplot(viz.team_passes_heatmap(match_id, away_team, home_team, away_team, competition_stage))
+
 
 fun_dict = {
         'Overview': overview,
@@ -139,7 +145,8 @@ fun_dict = {
         'Progressive Passes': pp,
         'Passing Sonars': ps,
         'Team Expected Threat': tet,
-        'Pressure Heatmap': ph
+        'Pressure Heatmap': ph,
+        'Team Pass Map': tpm
     }
 
 def create_plot(selected_chart, match_id, home_team, away_team, competition_stage):

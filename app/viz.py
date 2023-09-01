@@ -4,13 +4,13 @@ from mplsoccer.pitch import Pitch, VerticalPitch
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
+from matplotlib.lines import Line2D
 import pandas as pd
 import numpy as np
 import seaborn as sns
-
-from matplotlib.lines import Line2D
-from scipy.spatial import ConvexHull
 from scipy import stats
+from scipy.spatial import ConvexHull
+from scipy.ndimage.filters import gaussian_filter
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -652,7 +652,7 @@ def pressure_heatmap(match_id, team, home_team, away_team, competition_stage):
         fig ,ax = plt.subplots(figsize=(13, 8),constrained_layout=False, tight_layout=True)
         fig.set_facecolor('#55647d')
         ax.patch.set_facecolor('#55647d')
-        pitch = Pitch(pitch_type='statsbomb', pitch_color='#55647d', line_color='white')
+        pitch = Pitch(pitch_type='statsbomb', pitch_color='#55647d', line_color='white', line_zorder=2)
         pitch.draw(ax=ax)
 
 
@@ -667,6 +667,29 @@ def pressure_heatmap(match_id, team, home_team, away_team, competition_stage):
                         arrowprops=dict(facecolor='#323b49'), fontsize=12, color='white', fontweight="bold", family="monospace")
 
         plt.title(f'{home_team} vs {away_team}, World Cup 2022 {competition_stage}\n{team}: Pressure Map',
+                color='white', size=20,  fontweight="bold", family="monospace")
+        
+        return fig
+
+
+def team_passes_heatmap(match_id, team, home_team, away_team, competition_stage):
+        events = sb.events(match_id=match_id, split=True, flatten_attrs=False)
+        passes = events['passes'].query(f"team=='{team}'")
+        passes_x = passes['location'].apply(lambda crd: crd[0])
+        passes_y = passes['location'].apply(lambda crd: crd[1])
+        passes_df = pd.DataFrame({'x': passes_x, 'y': passes_y})
+
+        fig ,ax = plt.subplots(figsize=(13, 8),constrained_layout=False, tight_layout=True)
+        fig.set_facecolor('#0e1117')
+        ax.patch.set_facecolor('#0e1117')
+        pitch = Pitch(pitch_type='statsbomb', pitch_color='#0e1117', line_color='#c7d5cc', line_zorder=2)
+        pitch.draw(ax=ax)
+
+        bin_statistic = pitch.bin_statistic(passes_df.x, passes_df.y, statistic='count', bins=(24, 25))
+        bin_statistic['statistic'] = gaussian_filter(bin_statistic['statistic'], 0.95)
+        pitch.heatmap(bin_statistic, ax=ax, cmap='hot', edgecolors='#2f2f2f', vmin=0, vmax=15)
+
+        plt.title(f'{home_team} vs {away_team}, World Cup 2022 {competition_stage}\n{team}: Pass Map',
                 color='white', size=20,  fontweight="bold", family="monospace")
         
         return fig

@@ -30,10 +30,9 @@ competition_stage = matches[matches['match_id']==match_id].iloc[0]['competition_
 
 # choose chart type
 selected_chart = st.sidebar.radio("Select Chart Type",
-                                   ["Overview", "Passing Network", "Passing Sonars", "Individual Pass Map",
-                                    'Progressive Passes', 'xG Flow', "Shot Map", 'Individual Convex Hull',
-                                    "Team Convex Hull", "Voronoi Diagram", "Team Expected Threat",
-                                    "Pressure Heatmap"]
+                                   ["Overview", "Passing Network", "Passing Sonars", "Individual Pass Map", "Team Pass Map",
+                                    'Progressive Passes', 'xG Flow', "Shot Map", 'Individual Convex Hull', "Team Convex Hull",
+                                    "Voronoi Diagram", "Team Expected Threat", "Pressure Heatmap"]
                                     )
 
 match_data = matches[matches['match_id']==match_id].iloc[0]

@@ -1,7 +1,7 @@
 import streamlit as st
+from streamlit_extras.badges import badge
 from auxiliary import match_dict, matches
 from change_charts import create_plot
-import os
 
 #os.chdir('C:/Users/Aleks/OneDrive/Dokumenty/GitHub/WorldCup_App/app')
 
@@ -51,6 +51,7 @@ col1, col2 = st.columns(2)
 with col1:
     st.sidebar.markdown("App made by **Aleks Kapich**")
 with col2:
-    st.sidebar.write("[Twitter](https://twitter.com/AKapich)")
-    st.sidebar.write("[GitHub](https://github.com/AKapich)")
-    st.sidebar.write("[Buy Me a Coffee](https://www.buymeacoffee.com/akapich)")
+    with st.sidebar:
+        badge(type="twitter", name="AKapich")
+        badge(type="github", name="AKapich")
+        badge(type="buymeacoffee", name="akapich")

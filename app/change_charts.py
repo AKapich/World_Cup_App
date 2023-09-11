@@ -20,10 +20,10 @@ def overview(match_id, home_team, away_team, competition_stage):
         col1, col2 = st.columns(2)
         with col1:
             st.write(f"{home_team} - Starting XI")
-            st.write(home_lineup.head(11), index=False)
+            st.table(home_lineup.head(11))
         with col2:
             st.write(f"{away_team} - Starting XI")
-            st.write(away_lineup.head(11), index=False)
+            st.table(away_lineup.head(11))
 
 
 def ipm(match_id, home_team, away_team, competition_stage):

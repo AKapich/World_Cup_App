@@ -1,4 +1,4 @@
-# [2022 World Cup App](https://worldcup2022-alekskapich.streamlit.app/)
+# [2022 World Cup App](https://worldcup2022-aleks-kapich.streamlit.app/)
 Python app facilitating analysis of every World Cup 2022 football match
 
 Here's how does it look like: 
@@ -6,6 +6,8 @@ Here's how does it look like:
 ![](https://github.com/AKapich/WorldCup_App/blob/main/images/screen.png)
 
 ![](https://github.com/AKapich/WorldCup_App/blob/main/images/screen2.png)
+
+![](https://github.com/AKapich/WorldCup_App/blob/main/images/screen3.png)
 
 Simple menu helps to choose into which match we would like to have the insight and what type of charts we would like to see.
 

@@ -1,0 +1,5 @@
+statsbombpy==1.6.1
+mplsoccer==1.1.9
+streamlit-extras==0.3.0
+matplotlib==3.6.0
+numpy==1.23.5

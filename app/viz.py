@@ -509,7 +509,7 @@ def passing_sonars(match_id, team, home_team, away_team, competition_stage):
                 # _ is the index of the row
                 for _, row in pass_sonar[pass_sonar.player == player].iterrows():
                         #Start degree of direction 1
-                        theta_left_start = 180
+                        theta_left_start = 198
 
                         #Color coding by distance
                         #color = "darkred"
@@ -519,7 +519,7 @@ def passing_sonars(match_id, team, home_team, away_team, competition_stage):
                         elif row.amount < 5:
                                 color = "darkorange"
                         #Calculate degree in matplotlib figure
-                        theta_left = theta_left_start - (360 / 20) * (row.angle_bin)
+                        theta_left = theta_left_start + (360 / 20) * (row.angle_bin)
                         theta_right = theta_left - (360 / 20)
                         
                         pass_wedge = pat.Wedge(

@@ -576,7 +576,7 @@ def expected_threat(match_id, team, home_team, away_team, competition_stage):
         df['end_y_bin'] = pd.cut(df['end_x'], bins=xT_rows, labels=False)
         df['start_zone_value'] = df[['start_x_bin', 'start_y_bin']].apply(lambda z: xT[z[1]][z[0]], axis=1)
         df['end_zone_value'] = df[['end_x_bin', 'end_y_bin']].apply(lambda z: xT[z[1]][z[0]], axis=1)
-        df['xT'] = df['start_zone_value']-df['end_zone_value']
+        df['xT'] = df['end_zone_value']-df['start_zone_value']
 
         # filter down to one team
         df = df[df['team']==team]
